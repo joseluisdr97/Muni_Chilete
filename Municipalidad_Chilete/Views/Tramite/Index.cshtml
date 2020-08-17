@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de tramites</h2>
+
+<br />
+<div class="container">
+
+    <label class="control-label">Ingrese Nombre :</label>
+    <div class="row">
+        <form action="/Tramite/Buscar">
+            <div class="col-sm-4">
+                <input id="query" class="form-control" type="text" name="query" value="@ViewBag.datos" placeholder="Ingrese nombre" />
+            </div>
+            <div class="col-sm-2">
+                <button id="btnBuscar" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+            </div>
+        </form>
+        <div class="col-sm-6">
+            <a class="btn btn-primary pull-right" id="btnCrear" href="/Tramite/Crear"><span class="glyphicon glyphicon-plus"></span> Crear</a>
+        </div>
+    </div>
+    <br />
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Opción</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id_Tramite</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.Descripcion</td>
+                    <td><a href="/Tramite/Editar?id=@item.Id_Tramite" class="btn btn-info">Editar</a> | <a href="/Tramite/Eliminar?id=@item.Id_Tramite" class="btn btn-danger">Eliminar</a> | <a href="/Tramite/Tipo_Tramite?id=@item.Id_Tramite" class="btn btn-danger">Eliminar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+
+    //BUSCAR CUANDO DAMOS CLICK
+    $("#btnBuscar").click(function (e) {
+        e.preventDefault();
+        var valor = $("#query").val();
+        $.ajax({ url: "/Tramite/Buscar?query=" + valor })
+            .done(function (respuesta) {
+            $("#tbody").html(respuesta);
+        });
+    });
+
+    //BUSCAR CUANDO DAMOS ENTER
+    $("#query").keypress(function (e) {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (code == 13) {
+            var valor = $("#query").val();
+            $.ajax({ url: "/Tramite/Buscar?query=" + valor })
+            .done(function (respuesta) {
+                $("#tbody").html(respuesta);
+            });
+        }
+    });
+
+</script>
