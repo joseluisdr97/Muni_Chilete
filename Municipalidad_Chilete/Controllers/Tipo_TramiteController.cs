@@ -14,52 +14,52 @@ namespace Municipalidad_Chilete.Controllers
         // GET: Tramite
         public ActionResult Index(int id_Tramite)
         {
-            ViewBag.Id_Tramite = id_Tramite;
-            return View(conexion.Tipo_Tramites.ToList());
+            ViewBag.Tramite = conexion.Tramites.Find(id_Tramite);
+            return View(conexion.Tipo_Tramites.Where(a=>a.Id_Tramite==id_Tramite).ToList());
         }
         [HttpGet]
         public ActionResult Buscar(string query, int id_Tramite)
         {
-            ViewBag.Id_Tramite = id_Tramite;
+            ViewBag.Tramite = conexion.Tramites.Find(id_Tramite);
             ViewBag.datos = query;
             List<Tipo_Tramite> datos;
             if (query != null)
             {
-                datos = conexion.Tipo_Tramites.Where(a => a.Nombre.Contains(query)).ToList();
+                datos = conexion.Tipo_Tramites.Where(a => a.Nombre.Contains(query) && a.Id_Tramite == id_Tramite).ToList();
                 return View(datos);
             }
-            return View(conexion.Tramites.ToList());
+            return View(conexion.Tipo_Tramites.Where(a => a.Id_Tramite == id_Tramite).ToList());
         }
         [HttpGet]
         public ActionResult Crear(int id_Tramite)
         {
-            ViewBag.Id_Tramite = id_Tramite;
+            ViewBag.Tramite = conexion.Tramites.Find(id_Tramite);
             return View(new Tipo_Tramite());
         }
         [HttpPost]
         public ActionResult Crear(Tipo_Tramite tipo_tramite, int id_Tramite)
         {
-            ViewBag.Id_Tramite = id_Tramite;
+            ViewBag.Tramite = conexion.Tramites.Find(id_Tramite);
             Validar(tipo_tramite);
             if (ModelState.IsValid == true)
             {
                 conexion.Tipo_Tramites.Add(tipo_tramite);
                 conexion.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id_Tramite = id_Tramite });
             }
             return View(tipo_tramite);
         }
         [HttpGet]
         public ActionResult Editar(int id, int id_Tramite)
         {
-            ViewBag.Id_Tramite = id_Tramite;
+            ViewBag.Tramite = conexion.Tramites.Find(id_Tramite);
             var tipo_tramite = conexion.Tipo_Tramites.Find(id);
             return View(tipo_tramite);
         }
         [HttpPost]
         public ActionResult Editar(Tipo_Tramite tipo_tramite, int id, int id_Tramite)
         {
-            ViewBag.Id_Tramite = id_Tramite;
+            ViewBag.Tramite = conexion.Tramites.Find(id_Tramite);
             Validar(tipo_tramite);
             if (ModelState.IsValid == true)
             {
@@ -67,7 +67,7 @@ namespace Municipalidad_Chilete.Controllers
                 tipo_tramiteDB.Nombre = tipo_tramite.Nombre;
                 tipo_tramiteDB.Descripcion = tipo_tramite.Descripcion;
                 conexion.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id_Tramite = id_Tramite });
             }
             return View(tipo_tramite);
         }
@@ -75,11 +75,11 @@ namespace Municipalidad_Chilete.Controllers
         [HttpGet]
         public ActionResult Eliminar(int id, int id_Tramite)
         {
-            ViewBag.Id_Tramite = id_Tramite;
+            ViewBag.Tramite = conexion.Tramites.Find(id_Tramite);
             var tipo_tramiteDB = conexion.Tipo_Tramites.Find(id);
             conexion.Tipo_Tramites.Remove(tipo_tramiteDB);
             conexion.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id_Tramite = id_Tramite });
         }
 
         private void Validar(Tipo_Tramite tipo_tramite)

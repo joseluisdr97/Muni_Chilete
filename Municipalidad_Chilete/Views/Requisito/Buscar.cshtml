@@ -1,0 +1,16 @@
+﻿
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Id_Requisito</td>
+        <td>@item.Descripcion</td>
+        <td>@item.Precio</td>
+        <td>@item.Formato</td>
+        <td><a href="/Requisito/Editar?id=@item.Id_Requisito&&id_Tipo_Tramite=@ViewBag.Tipo_Tramite.Id_Tipo_Tramite" class="btn btn-info">Editar</a> | <a href="/Tipo_Tramite/Eliminar?id=@item.Id_Requisito&&id_Tipo_Tramite=@ViewBag.Tipo_Tramite.Id_Tipo_Tramite" class="btn btn-danger">Eliminar</a></td>
+    </tr>
+}
+

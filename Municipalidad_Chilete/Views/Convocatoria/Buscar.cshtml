@@ -1,0 +1,14 @@
+﻿
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Id_Convocatoria</td>
+        <td>@item.Descripcion</td>
+        <td><a href="/Convocatoria/Editar?id=@item.Id_Convocatoria" class="btn btn-info">Editar</a> | <a href="/Convocatoria/Eliminar?id=@item.Id_Convocatoria" class="btn btn-danger">Eliminar</a></td>
+    </tr>
+}
+

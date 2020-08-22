@@ -13,22 +13,22 @@
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
             <div class="panel panel-primary">
-                <div class="panel-heading text-center"><h3>Crear tramite</h3></div>
+                <div class="panel-heading text-center"><h3>Crear noticia</h3></div>
                 <div id="inputs" class="panel-body">
 
-                    <form action="/Tramite/Crear" method="post">
-                        <div>
-                            <label class="control-label">Nombre :</label>
-                            <input class="form-control" type="text" name="Nombre" value="@Model.Nombre" />
-                            @Html.ValidationMessage("Nombre")
-                        </div>
+                    <form action="/Noticia/Crear" method="post" enctype="multipart/form-data">
                         <div>
                             <label class="control-label">Descripcion :</label>
                             <input class="form-control" type="text" name="Descripcion" value="@Model.Descripcion" />
                             @Html.ValidationMessage("Descripcion")
                         </div>
+                        <div>
+                            <label class="control-label">Imagen :</label>
+                            <input class="form-control" type="file" name="file" value="@Model.Imagen" />
+                            @Html.ValidationMessage("Imagen")
+                        </div>
                         <br />
-                        <a class="pull-left btn btn-danger" href="/Tramite/Index"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</a>
+                        <a class="pull-left btn btn-danger" href="/Noticia/Index"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</a>
                         <button id="btnGuardar" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-saved"></span> Guardar</button>
 
                     </form>
@@ -39,3 +39,4 @@
 
     </div>
 </div>
+

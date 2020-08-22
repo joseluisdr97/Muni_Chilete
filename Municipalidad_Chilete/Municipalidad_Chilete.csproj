@@ -127,17 +127,24 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConvocatoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
+    <Compile Include="Controllers\NoticiaController.cs" />
+    <Compile Include="Controllers\RequisitoController.cs" />
     <Compile Include="Controllers\Tipo_TramiteController.cs" />
     <Compile Include="Controllers\TramiteController.cs" />
     <Compile Include="DB\AppConexionDB.cs" />
+    <Compile Include="DB\Maps\ConvocatoriaMap.cs" />
+    <Compile Include="DB\Maps\NoticiaMap.cs" />
     <Compile Include="DB\Maps\RequisitoMap.cs" />
     <Compile Include="DB\Maps\Tipo_TramiteMap.cs" />
     <Compile Include="DB\Maps\TramiteMap.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Convocatoria.cs" />
+    <Compile Include="Models\Noticia.cs" />
     <Compile Include="Models\Requisito.cs" />
     <Compile Include="Models\Tipo_Tramite.cs" />
     <Compile Include="Models\Tramite.cs" />
@@ -185,11 +192,27 @@
     <Content Include="Views\Tramite\Crear.cshtml" />
     <Content Include="Views\Tramite\Editar.cshtml" />
     <Content Include="Views\Tramite\Buscar.cshtml" />
+    <Content Include="Views\Tipo_Tramite\Index.cshtml" />
+    <Content Include="Views\Tipo_Tramite\Buscar.cshtml" />
+    <Content Include="Views\Tipo_Tramite\Crear.cshtml" />
+    <Content Include="Views\Tipo_Tramite\Editar.cshtml" />
+    <Content Include="Views\Requisito\Index.cshtml" />
+    <Content Include="Views\Requisito\Buscar.cshtml" />
+    <Content Include="Views\Requisito\Crear.cshtml" />
+    <Content Include="Views\Requisito\Editar.cshtml" />
+    <Content Include="Views\Noticia\Index.cshtml" />
+    <Content Include="Views\Noticia\Buscar.cshtml" />
+    <Content Include="Views\Noticia\Crear.cshtml" />
+    <Content Include="Views\Noticia\Editar.cshtml" />
+    <Content Include="Views\Convocatoria\Index.cshtml" />
+    <Content Include="Views\Convocatoria\Buscar.cshtml" />
+    <Content Include="Views\Convocatoria\Crear.cshtml" />
+    <Content Include="Views\Convocatoria\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Imagenes\" />
     <Folder Include="Views\Inicio\" />
-    <Folder Include="Views\Tipo_Tramite\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

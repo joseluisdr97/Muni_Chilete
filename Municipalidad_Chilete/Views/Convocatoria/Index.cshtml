@@ -3,23 +3,23 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Lista de tramites</h2>
+<h2>Lista de convocatorias</h2>
 
 <br />
 <div class="container">
 
-    <label class="control-label">Ingrese Nombre :</label>
+    <label class="control-label">Ingrese Descripción :</label>
     <div class="row">
         <form action="/Tramite/Buscar">
             <div class="col-sm-4">
-                <input id="query" class="form-control" type="text" name="query" value="@ViewBag.datos" placeholder="Ingrese nombre" />
+                <input id="query" class="form-control" type="text" name="query" value="@ViewBag.datos" placeholder="Ingrese descripción" />
             </div>
             <div class="col-sm-2">
                 <button id="btnBuscar" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar</button>
             </div>
         </form>
         <div class="col-sm-6">
-            <a class="btn btn-primary pull-right" id="btnCrear" href="/Tramite/Crear"><span class="glyphicon glyphicon-plus"></span> Crear</a>
+            <a class="btn btn-primary pull-right" id="btnCrear" href="/Convocatoria/Crear"><span class="glyphicon glyphicon-plus"></span> Crear</a>
         </div>
     </div>
     <br />
@@ -28,7 +28,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Opción</th>
             </tr>
@@ -37,10 +36,9 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.Id_Tramite</td>
-                    <td>@item.Nombre</td>
+                    <td>@item.Id_Convocatoria</td>
                     <td>@item.Descripcion</td>
-                    <td><a href="/Tramite/Editar?id=@item.Id_Tramite" class="btn btn-info">Editar</a> | <a href="/Tramite/Eliminar?id=@item.Id_Tramite" class="btn btn-danger">Eliminar</a> | <a href="/Tipo_Tramite/Index?id_Tramite=@item.Id_Tramite" class="btn btn-success">Tipos</a> </td>
+                    <td><a href="/Convocatoria/Editar?id=@item.Id_Convocatoria" class="btn btn-info">Editar</a> | <a href="/Convocatoria/Eliminar?id=@item.Id_Convocatoria" class="btn btn-danger">Eliminar</a></td>
                 </tr>
             }
         </tbody>
@@ -54,7 +52,7 @@
     $("#btnBuscar").click(function (e) {
         e.preventDefault();
         var valor = $("#query").val();
-        $.ajax({ url: "/Tramite/Buscar?query=" + valor })
+        $.ajax({ url: "/Convocatoria/Buscar?query=" + valor })
             .done(function (respuesta) {
             $("#tbody").html(respuesta);
         });
@@ -65,7 +63,7 @@
         var code = (e.keyCode ? e.keyCode : e.which);
         if (code == 13) {
             var valor = $("#query").val();
-            $.ajax({ url: "/Tramite/Buscar?query=" + valor })
+            $.ajax({ url: "/Convocatoria/Buscar?query=" + valor })
             .done(function (respuesta) {
                 $("#tbody").html(respuesta);
             });

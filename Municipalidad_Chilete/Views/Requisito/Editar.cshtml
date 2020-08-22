@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Editar";
+}
+
+<div class="container">
+    <div class="row">
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center"><h3>Editar requisito</h3></div>
+                <div id="inputs" class="panel-body">
+                    <form action="/Requisito/Editar?id=@Model.Id_Requisito&&id_Tipo_Tramite=@ViewBag.Tipo_Tramite.Id_Tipo_Tramite" method="post">
+                        <div>
+                            <label class="control-label">Descripcion :</label>
+                            <input class="form-control" type="text" name="Descripcion" value="@Model.Descripcion" />
+                            @Html.ValidationMessage("Descripcion")
+                        </div>
+                        <div>
+                            <label class="control-label">Precio :</label>
+                            <input class="form-control" type="number" name="Precio" value="@Model.Precio" />
+                            @Html.ValidationMessage("Precio")
+                        </div>
+                        <div>
+                            <label class="control-label">Formato :</label>
+                            <input class="form-control" type="text" name="Formato" value="@Model.Formato" />
+                            @Html.ValidationMessage("Formato")
+                        </div>
+                        <br />
+                        <a class="pull-left btn btn-danger" href="/Requisito/Index?id_Tipo_Tramite=@ViewBag.Tipo_Tramite.Id_Tipo_Tramite"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</a>
+                        <button id="btnGuardar" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-saved"></span> Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
