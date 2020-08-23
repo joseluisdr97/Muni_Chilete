@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="container">
+    <br />
+    <br />
+    <h2>Lista de requisitos</h2>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Formato</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Descripcion</td>
+                <td>@item.Precio</td>
+                <td>@item.Formato</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+

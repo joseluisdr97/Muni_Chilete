@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Noticia";
+}
+
+@foreach(var item in Model)
+{
+<tr>
+    <br />
+    <br />
+    <td><img src="@item.Imagen" style="width:100px;height:100px" /></td>
+    <td>@item.Descripcion</td>
+</tr>
+}
+

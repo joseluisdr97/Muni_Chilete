@@ -12,10 +12,12 @@ namespace Municipalidad_Chilete.Controllers
     {
         private AppConexionDB conexion = new AppConexionDB();
         // GET: Tramite
+        [Authorize]
         public ActionResult Index()
         {
             return View(conexion.Tramites.ToList());
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Buscar(string query)
         {
@@ -28,11 +30,13 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(conexion.Tramites.ToList());
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Crear()
         {
             return View(new Tramite());
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Crear(Tramite tramite)
         {
@@ -45,12 +49,14 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(tramite);
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Editar(int id)
         {
             var tramite = conexion.Tramites.Find(id);
             return View(tramite);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Editar(Tramite tramite, int id)
         {
@@ -65,7 +71,7 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(tramite);
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult Eliminar(int id)
         {
@@ -73,6 +79,22 @@ namespace Municipalidad_Chilete.Controllers
             conexion.Tramites.Remove(tramiteDB);
             conexion.SaveChanges();
             return RedirectToAction("Index");
+        }
+        
+
+        public ActionResult Tramite()
+        {
+            var datos = conexion.Tramites.ToList();
+            return View(datos);
+        }
+        public ActionResult TipoTramite(int id)
+        {
+            
+            return View(conexion.Tipo_Tramites.Where(a=>a.Id_Tramite==id).ToList());
+        }
+        public ActionResult Requisito(int id)
+        {
+            return View(conexion.Requisitos.Where(a => a.Id_Tipo_Tramite == id).ToList());
         }
 
         private void Validar(Tramite tramite)

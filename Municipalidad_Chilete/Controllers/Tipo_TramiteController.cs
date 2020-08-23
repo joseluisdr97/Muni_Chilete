@@ -11,12 +11,15 @@ namespace Municipalidad_Chilete.Controllers
     public class Tipo_TramiteController : Controller
     {
         private AppConexionDB conexion = new AppConexionDB();
+
+        [Authorize]
         // GET: Tramite
         public ActionResult Index(int id_Tramite)
         {
             ViewBag.Tramite = conexion.Tramites.Find(id_Tramite);
             return View(conexion.Tipo_Tramites.Where(a=>a.Id_Tramite==id_Tramite).ToList());
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Buscar(string query, int id_Tramite)
         {
@@ -30,12 +33,14 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(conexion.Tipo_Tramites.Where(a => a.Id_Tramite == id_Tramite).ToList());
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Crear(int id_Tramite)
         {
             ViewBag.Tramite = conexion.Tramites.Find(id_Tramite);
             return View(new Tipo_Tramite());
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Crear(Tipo_Tramite tipo_tramite, int id_Tramite)
         {
@@ -49,6 +54,7 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(tipo_tramite);
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Editar(int id, int id_Tramite)
         {
@@ -56,6 +62,7 @@ namespace Municipalidad_Chilete.Controllers
             var tipo_tramite = conexion.Tipo_Tramites.Find(id);
             return View(tipo_tramite);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Editar(Tipo_Tramite tipo_tramite, int id, int id_Tramite)
         {
@@ -71,7 +78,7 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(tipo_tramite);
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult Eliminar(int id, int id_Tramite)
         {

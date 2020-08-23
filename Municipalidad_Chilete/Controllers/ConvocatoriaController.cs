@@ -12,10 +12,12 @@ namespace Municipalidad_Chilete.Controllers
     {
         private AppConexionDB conexion = new AppConexionDB();
         // GET: Tramite
+        [Authorize]
         public ActionResult Index()
         {
             return View(conexion.Convocatorias.ToList());
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Buscar(string query)
         {
@@ -28,11 +30,13 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(conexion.Convocatorias.ToList());
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Crear()
         {
             return View(new Tramite());
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Crear(Convocatoria convocatoria)
         {
@@ -45,12 +49,14 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(convocatoria);
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Editar(int id)
         {
             var convocatoria = conexion.Convocatorias.Find(id);
             return View(convocatoria);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Editar(Convocatoria convocatoria, int id)
         {
@@ -64,7 +70,7 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(convocatoria);
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult Eliminar(int id)
         {
@@ -74,6 +80,10 @@ namespace Municipalidad_Chilete.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Convocatoria()
+        {
+            return View(conexion.Convocatorias.ToList());
+        }
         private void Validar(Convocatoria convocatoria)
         {
             if (convocatoria.Descripcion == null)

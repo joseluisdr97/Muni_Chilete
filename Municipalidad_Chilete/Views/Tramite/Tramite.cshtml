@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Tramite";
+}
+<br />
+<br />
+<br />
+<br />
+@foreach(var item in Model)
+{
+<tr>
+    <td>
+        <a href="/Tramite/TipoTramite?id=@item.Id_Tramite" class="btn btn-danger">@item.Nombre</a>
+    </td>
+</tr>
+}

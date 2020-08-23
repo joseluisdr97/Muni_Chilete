@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+
+
+<div class="container">
+    <h2>Login</h2>
+    <form action="/Login/Login" method="post">
+        <div>
+            <label class="control-label">Correo :</label>
+            <input class="form-control" name="Correo" type="text" />
+        </div>
+        <div>
+            <label class="control-label">Contraseña :</label>
+            <input class="form-control" name="Password" type="password" />
+        </div>
+        <br />
+        <button class="btn btn-primary">Ingresar</button>
+        @ViewBag.Validation
+    </form>
+</div>

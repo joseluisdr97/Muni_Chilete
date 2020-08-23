@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Convocatoria";
+}
+
+<h2>Convocatoria</h2>
+
+@foreach (var item in Model)
+{
+    <tr>
+        @item.Descripcion
+    </tr>
+}

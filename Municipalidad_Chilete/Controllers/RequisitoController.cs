@@ -12,6 +12,7 @@ namespace Municipalidad_Chilete.Controllers
     {
         private AppConexionDB conexion = new AppConexionDB();
         // GET: Tramite
+        [Authorize]
         public ActionResult Index(int id_Tipo_Tramite)
         {
             ViewBag.Tramite = conexion.Tipo_Tramites.Find(id_Tipo_Tramite);
@@ -19,6 +20,7 @@ namespace Municipalidad_Chilete.Controllers
 
             return View(conexion.Requisitos.Where(a => a.Id_Tipo_Tramite == id_Tipo_Tramite).ToList());
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Buscar(string query, int id_Tipo_Tramite)
         {
@@ -33,12 +35,14 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(conexion.Requisitos.Where(a => a.Id_Tipo_Tramite == id_Tipo_Tramite).ToList());
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Crear(int id_Tipo_Tramite)
         {
             ViewBag.Tipo_Tramite = conexion.Tipo_Tramites.Find(id_Tipo_Tramite);
             return View(new Requisito());
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Crear(Requisito requisito, int id_Tipo_Tramite)
         {
@@ -52,6 +56,7 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(requisito);
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Editar(int id, int id_Tipo_Tramite)
         {
@@ -59,6 +64,7 @@ namespace Municipalidad_Chilete.Controllers
             var requisito = conexion.Requisitos.Find(id);
             return View(requisito);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Editar(Requisito requisito, int id, int id_Tipo_Tramite)
         {
@@ -75,7 +81,7 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(requisito);
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult Eliminar(int id, int id_Tipo_Tramite)
         {

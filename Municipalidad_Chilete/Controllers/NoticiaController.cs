@@ -13,10 +13,12 @@ namespace Municipalidad_Chilete.Controllers
     {
         private AppConexionDB conexion = new AppConexionDB();
         // GET: Tramite
+        [Authorize]
         public ActionResult Index()
         {
             return View(conexion.Noticias.ToList());
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Buscar(string query)
         {
@@ -29,11 +31,13 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(conexion.Noticias.ToList());
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Crear()
         {
             return View(new Noticia());
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Crear(Noticia noticia, HttpPostedFileBase file)
         {
@@ -52,12 +56,14 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(noticia);
         }
+        [Authorize]
         [HttpGet]
         public ActionResult Editar(int id)
         {
             var noticia = conexion.Noticias.Find(id);
             return View(noticia);
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Editar(Noticia noticia, int id, HttpPostedFileBase file)
         {
@@ -82,7 +88,7 @@ namespace Municipalidad_Chilete.Controllers
             }
             return View(noticia);
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult Eliminar(int id)
         {
@@ -90,6 +96,11 @@ namespace Municipalidad_Chilete.Controllers
             conexion.Noticias.Remove(noticiaDB);
             conexion.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Noticia()
+        {
+            return View(conexion.Noticias.ToList());
         }
 
         private void Validar(Noticia noticia)

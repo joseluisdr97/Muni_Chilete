@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "TipoTramite";
+}
+
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div>
+        <label class="control-label">Seleccione tipo de tramite : </label>
+        <select id="TipoTramite" class="form-control">
+            <option value="Seleccione">-- Seleccione Tipo --</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.Id_Tipo_Tramite">@item.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <div id="tbody">
+
+    </div>
+
+</div>
+
+<script>
+
+    //BUSCAR CUANDO DAMOS CLICK
+    $("#TipoTramite").change(function (e) {
+        e.preventDefault();
+        var valor = $("#TipoTramite").val();
+        $.ajax({ url: "/Tramite/Requisito?id=" + valor })
+            .done(function (respuesta) {
+            $("#tbody").html(respuesta);
+        });
+    });
+
+
+</script>
