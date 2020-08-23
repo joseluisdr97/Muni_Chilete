@@ -16,6 +16,7 @@ namespace Municipalidad_Chilete.DB
         public IDbSet<Noticia> Noticias { get; set; }
         public IDbSet<Convocatoria> Convocatorias { get; set; }
         public IDbSet<Usuario> Usuarios { get; set; }
+        public IDbSet<Formato> Formatos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -26,6 +27,7 @@ namespace Municipalidad_Chilete.DB
             modelBuilder.Configurations.Add(new NoticiaMap());
             modelBuilder.Configurations.Add(new ConvocatoriaMap());
             modelBuilder.Configurations.Add(new UsuarioMap());
+            modelBuilder.Configurations.Add(new FormatoMap());
         }
     }
 }

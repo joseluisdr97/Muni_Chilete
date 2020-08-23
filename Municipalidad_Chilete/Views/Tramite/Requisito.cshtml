@@ -21,7 +21,17 @@
             <tr>
                 <td>@item.Descripcion</td>
                 <td>@item.Precio</td>
-                <td>@item.Formato</td>
+
+                <td>
+                    @item.Formato  
+                    @foreach (var itemFormato in ViewBag.Formatos)
+                    {
+                      if (item.Formato == itemFormato.Nombre)
+                      {
+                        <a class="btn btn-warning" href="@itemFormato.Url" target="_blank">Descargar formato</a>
+                      }
+                     }
+                </td>
             </tr>
             }
         </tbody>

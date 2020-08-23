@@ -27,7 +27,13 @@
                         </div>
                         <div>
                             <label class="control-label">Formato :</label>
-                            <input class="form-control" type="text" name="Formato" value="@Model.Formato" />
+                            <select class="form-control" name="Formato">
+                                <option value="No tiene">-- No tiene --</option>
+                                @foreach (var item in ViewBag.Formatos)
+                                {
+                                    <option value="@item.Nombre">@item.Nombre</option>
+                                }
+                            </select>
                             @Html.ValidationMessage("Formato")
                         </div>
                         <br />

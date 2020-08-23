@@ -12,6 +12,7 @@ namespace Municipalidad_Chilete.Models
         public string Descripcion { get; set; }
         public int Id_Tramite { get; set; }
         public Tramite Tramite { get; set; }
+        public bool Activo_Inactivo { get; set; }
         public List<Requisito> Requisitos { get; set; }
     }
 }

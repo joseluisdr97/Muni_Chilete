@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ConvocatoriaController.cs" />
+    <Compile Include="Controllers\FormatoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InicioController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Controllers\TramiteController.cs" />
     <Compile Include="DB\AppConexionDB.cs" />
     <Compile Include="DB\Maps\ConvocatoriaMap.cs" />
+    <Compile Include="DB\Maps\FormatoMap.cs" />
     <Compile Include="DB\Maps\NoticiaMap.cs" />
     <Compile Include="DB\Maps\RequisitoMap.cs" />
     <Compile Include="DB\Maps\Tipo_TramiteMap.cs" />
@@ -146,6 +148,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Convocatoria.cs" />
+    <Compile Include="Models\Formato.cs" />
     <Compile Include="Models\Noticia.cs" />
     <Compile Include="Models\Requisito.cs" />
     <Compile Include="Models\Tipo_Tramite.cs" />
@@ -217,6 +220,10 @@
     <Content Include="Views\Noticia\Noticia.cshtml" />
     <Content Include="Views\Convocatoria\Convocatoria.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Formato\Index.cshtml" />
+    <Content Include="Views\Formato\Buscar.cshtml" />
+    <Content Include="Views\Formato\Crear.cshtml" />
+    <Content Include="Views\Formato\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

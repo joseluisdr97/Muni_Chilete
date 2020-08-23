@@ -39,6 +39,7 @@ namespace Municipalidad_Chilete.Controllers
         [HttpGet]
         public ActionResult Crear(int id_Tipo_Tramite)
         {
+            ViewBag.Formatos = conexion.Formatos.ToList();
             ViewBag.Tipo_Tramite = conexion.Tipo_Tramites.Find(id_Tipo_Tramite);
             return View(new Requisito());
         }
@@ -46,6 +47,7 @@ namespace Municipalidad_Chilete.Controllers
         [HttpPost]
         public ActionResult Crear(Requisito requisito, int id_Tipo_Tramite)
         {
+            ViewBag.Formatos = conexion.Formatos.ToList();
             ViewBag.Tipo_Tramite = conexion.Tipo_Tramites.Find(id_Tipo_Tramite);
             Validar(requisito);
             if (ModelState.IsValid == true)
@@ -60,6 +62,7 @@ namespace Municipalidad_Chilete.Controllers
         [HttpGet]
         public ActionResult Editar(int id, int id_Tipo_Tramite)
         {
+            ViewBag.Formatos = conexion.Formatos.ToList();
             ViewBag.Tipo_Tramite = conexion.Tipo_Tramites.Find(id_Tipo_Tramite);
             var requisito = conexion.Requisitos.Find(id);
             return View(requisito);
@@ -68,6 +71,7 @@ namespace Municipalidad_Chilete.Controllers
         [HttpPost]
         public ActionResult Editar(Requisito requisito, int id, int id_Tipo_Tramite)
         {
+            ViewBag.Formatos = conexion.Formatos.ToList();
             ViewBag.Tipo_Tramite = conexion.Tipo_Tramites.Find(id_Tipo_Tramite);
             Validar(requisito);
             if (ModelState.IsValid == true)

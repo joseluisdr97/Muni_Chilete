@@ -15,7 +15,7 @@ namespace Municipalidad_Chilete.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View(conexion.Tramites.ToList());
+            return View(conexion.Tramites.Where(a => a.Activo_Inactivo == true).ToList());
         }
         [Authorize]
         [HttpGet]
@@ -25,10 +25,10 @@ namespace Municipalidad_Chilete.Controllers
             List<Tramite> datos;
             if (query != null)
             {
-                datos = conexion.Tramites.Where(a => a.Nombre.Contains(query)).ToList();
+                datos = conexion.Tramites.Where(a => a.Nombre.Contains(query) && a.Activo_Inactivo==true).ToList();
                 return View(datos);
             }
-            return View(conexion.Tramites.ToList());
+            return View(conexion.Tramites.Where(a=>a.Activo_Inactivo==true).ToList());
         }
         [Authorize]
         [HttpGet]
@@ -43,6 +43,7 @@ namespace Municipalidad_Chilete.Controllers
             Validar(tramite);
             if (ModelState.IsValid == true)
             {
+                tramite.Activo_Inactivo = true;
                 conexion.Tramites.Add(tramite);
                 conexion.SaveChanges();
                 return RedirectToAction("Index");
@@ -76,7 +77,7 @@ namespace Municipalidad_Chilete.Controllers
         public ActionResult Eliminar(int id)
         {
             var tramiteDB = conexion.Tramites.Find(id);
-            conexion.Tramites.Remove(tramiteDB);
+            tramiteDB.Activo_Inactivo = false;
             conexion.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -84,16 +85,17 @@ namespace Municipalidad_Chilete.Controllers
 
         public ActionResult Tramite()
         {
-            var datos = conexion.Tramites.ToList();
+            var datos = conexion.Tramites.Where(a => a.Activo_Inactivo == true).ToList();
             return View(datos);
         }
         public ActionResult TipoTramite(int id)
         {
             
-            return View(conexion.Tipo_Tramites.Where(a=>a.Id_Tramite==id).ToList());
+            return View(conexion.Tipo_Tramites.Where(a=>a.Id_Tramite==id && a.Activo_Inactivo==true).ToList());
         }
         public ActionResult Requisito(int id)
         {
+            ViewBag.Formatos = conexion.Formatos.ToList();
             return View(conexion.Requisitos.Where(a => a.Id_Tipo_Tramite == id).ToList());
         }
 

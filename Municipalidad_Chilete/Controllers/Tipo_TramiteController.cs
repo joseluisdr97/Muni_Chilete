@@ -17,7 +17,7 @@ namespace Municipalidad_Chilete.Controllers
         public ActionResult Index(int id_Tramite)
         {
             ViewBag.Tramite = conexion.Tramites.Find(id_Tramite);
-            return View(conexion.Tipo_Tramites.Where(a=>a.Id_Tramite==id_Tramite).ToList());
+            return View(conexion.Tipo_Tramites.Where(a=>a.Id_Tramite==id_Tramite && a.Activo_Inactivo==true).ToList());
         }
         [Authorize]
         [HttpGet]
@@ -28,10 +28,10 @@ namespace Municipalidad_Chilete.Controllers
             List<Tipo_Tramite> datos;
             if (query != null)
             {
-                datos = conexion.Tipo_Tramites.Where(a => a.Nombre.Contains(query) && a.Id_Tramite == id_Tramite).ToList();
+                datos = conexion.Tipo_Tramites.Where(a => a.Nombre.Contains(query) && a.Id_Tramite == id_Tramite && a.Activo_Inactivo == true).ToList();
                 return View(datos);
             }
-            return View(conexion.Tipo_Tramites.Where(a => a.Id_Tramite == id_Tramite).ToList());
+            return View(conexion.Tipo_Tramites.Where(a => a.Id_Tramite == id_Tramite && a.Activo_Inactivo == true).ToList());
         }
         [Authorize]
         [HttpGet]
@@ -48,6 +48,7 @@ namespace Municipalidad_Chilete.Controllers
             Validar(tipo_tramite);
             if (ModelState.IsValid == true)
             {
+                tipo_tramite.Activo_Inactivo = true;
                 conexion.Tipo_Tramites.Add(tipo_tramite);
                 conexion.SaveChanges();
                 return RedirectToAction("Index", new { id_Tramite = id_Tramite });
@@ -84,7 +85,7 @@ namespace Municipalidad_Chilete.Controllers
         {
             ViewBag.Tramite = conexion.Tramites.Find(id_Tramite);
             var tipo_tramiteDB = conexion.Tipo_Tramites.Find(id);
-            conexion.Tipo_Tramites.Remove(tipo_tramiteDB);
+            tipo_tramiteDB.Activo_Inactivo = false;
             conexion.SaveChanges();
             return RedirectToAction("Index", new { id_Tramite = id_Tramite });
         }
