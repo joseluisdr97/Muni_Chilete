@@ -1,41 +1,109 @@
-﻿
-@{
-    ViewBag.Title = "TipoTramite";
+﻿@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_LayoutInicio.cshtml";
 }
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
-<br />
-<br />
-<br />
-<br />
+
+
 <div class="container">
-    <div>
-        <label class="control-label">Seleccione tipo de tramite : </label>
-        <select id="TipoTramite" class="form-control">
-            <option value="Seleccione">-- Seleccione Tipo --</option>
-            @foreach (var item in Model)
-            {
-                <option value="@item.Id_Tipo_Tramite">@item.Nombre</option>
-            }
-        </select>
-    </div>
 
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div>
+                <label class="control-label"><h4>Seleccione tipo de tramite : </h4></label>
+                <select id="TipoTramite" class="form-control">
+                    <option value="Seleccione">-- Seleccione Tipo --</option>
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item.Id_Tipo_Tramite">@item.Nombre</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
     <div id="tbody">
 
     </div>
 
 </div>
 
-<script>
 
+<script>
     //BUSCAR CUANDO DAMOS CLICK
     $("#TipoTramite").change(function (e) {
         e.preventDefault();
         var valor = $("#TipoTramite").val();
         $.ajax({ url: "/Tramite/Requisito?id=" + valor })
             .done(function (respuesta) {
-            $("#tbody").html(respuesta);
-        });
+                $("#tbody").html(respuesta);
+            });
     });
 
 
 </script>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-info">
+                    <h4>HORARIOS DE ATENCIÓN</h4>
+                    <p>LUNES A VIERNES</p>
+                    <p>8:00 AM - 1:00 PM</p>
+                    <p>3:00 PM - 6:00 PM</p>
+                </div>
+
+
+
+                <div class="col-lg-4 col-md-6 footer-contact">
+                    <h4>CONTACTANOS</h4>
+                    <p>
+                        Jr. Ignacio Prado N° 128<br>
+
+                        <strong>TELEFONO:</strong> 076 554113<br>
+
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-newsletter">
+                    <div class="social-links">
+                        <h4>REDES SOCIALES</h4>
+                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</footer>

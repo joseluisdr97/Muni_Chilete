@@ -10,6 +10,7 @@ namespace Municipalidad_Chilete.Models
         public int Id_Noticia { get; set; }
         public string Imagen { get; set; }
         public string Descripcion { get; set; }
+        public string Titulo { get; set; }
 
     }
 }

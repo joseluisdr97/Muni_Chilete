@@ -9,7 +9,7 @@ namespace Municipalidad_Chilete.Controllers
     public class InicioController : Controller
     {
         // GET: Inicio
-        public ActionResult Index()
+        public ActionResult Inicio()
         {
             return View();
         }

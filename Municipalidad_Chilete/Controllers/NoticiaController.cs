@@ -26,7 +26,7 @@ namespace Municipalidad_Chilete.Controllers
             List<Noticia> datos;
             if (query != null)
             {
-                datos = conexion.Noticias.Where(a => a.Descripcion.Contains(query)).ToList();
+                datos = conexion.Noticias.Where(a => a.Titulo.Contains(query)).ToList();
                 return View(datos);
             }
             return View(conexion.Noticias.ToList());
@@ -79,6 +79,7 @@ namespace Municipalidad_Chilete.Controllers
             {
                 var noticiaDB = conexion.Noticias.Find(id);
                 noticiaDB.Descripcion = noticia.Descripcion;
+                noticiaDB.Titulo = noticia.Titulo;
                 if (noticia.Imagen != null)
                 {
                     noticiaDB.Imagen = noticia.Imagen;
@@ -109,11 +110,15 @@ namespace Municipalidad_Chilete.Controllers
                 ModelState.AddModelError("Imagen", "El campo imagen es obligatorio");
             if (noticia.Descripcion == null)
                 ModelState.AddModelError("Descripcion", "El campo descripcion es obligatorio ");
+            if (noticia.Titulo == null)
+                ModelState.AddModelError("Titulo", "El campo titulo es obligatorio ");
         }
         private void ValidarEditar(Noticia noticia)
         {
             if (noticia.Descripcion == null)
                 ModelState.AddModelError("Descripcion", "El campo descripcion es obligatorio ");
+            if (noticia.Titulo == null)
+                ModelState.AddModelError("Titulo", "El campo titulo es obligatorio ");
         }
     }
 }

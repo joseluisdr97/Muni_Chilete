@@ -1,48 +1,72 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+                /**/
+
+                ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Lista de convocatorias</h2>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <br />
+            <h2>Lista de convocatorias</h2>
 
-<br />
-<div class="container">
+            <br />
+            <label class="control-label">Ingrese Descripción :</label>
+            <div class="row">
+                <form action="/Tramite/Buscar">
+                    <div class="col-sm-4">
+                        <input id="query" class="form-control" type="text" name="query" value="@ViewBag.datos" placeholder="Ingrese descripción" />
+                    </div>
+                    <div class="col-sm-2">
+                        <button id="btnBuscar" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+                    </div>
+                </form>
+                <div class="col-sm-6">
+                    <a class="btn btn-primary pull-right" id="btnCrear" href="/Convocatoria/Crear"><span class="glyphicon glyphicon-plus"></span> Crear</a>
+                </div>
+            </div>
+            <br />
 
-    <label class="control-label">Ingrese Descripción :</label>
-    <div class="row">
-        <form action="/Tramite/Buscar">
-            <div class="col-sm-4">
-                <input id="query" class="form-control" type="text" name="query" value="@ViewBag.datos" placeholder="Ingrese descripción" />
-            </div>
-            <div class="col-sm-2">
-                <button id="btnBuscar" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar</button>
-            </div>
-        </form>
-        <div class="col-sm-6">
-            <a class="btn btn-primary pull-right" id="btnCrear" href="/Convocatoria/Crear"><span class="glyphicon glyphicon-plus"></span> Crear</a>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Descripcion</th>
+                        <th>Opción</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id_Convocatoria</td>
+                            <td>@item.Descripcion</td>
+                            <td><a href="/Convocatoria/Editar?id=@item.Id_Convocatoria" class="btn btn-info">Editar</a> | <a href="/Convocatoria/Eliminar?id=@item.Id_Convocatoria" class="btn btn-danger">Eliminar</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </div>
     </div>
-    <br />
-
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Descripcion</th>
-                <th>Opción</th>
-            </tr>
-        </thead>
-        <tbody id="tbody">
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Id_Convocatoria</td>
-                    <td>@item.Descripcion</td>
-                    <td><a href="/Convocatoria/Editar?id=@item.Id_Convocatoria" class="btn btn-info">Editar</a> | <a href="/Convocatoria/Eliminar?id=@item.Id_Convocatoria" class="btn btn-danger">Eliminar</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <!-- /.row -->
 
 </div>
 
@@ -54,8 +78,8 @@
         var valor = $("#query").val();
         $.ajax({ url: "/Convocatoria/Buscar?query=" + valor })
             .done(function (respuesta) {
-            $("#tbody").html(respuesta);
-        });
+                $("#tbody").html(respuesta);
+            });
     });
 
     //BUSCAR CUANDO DAMOS ENTER
@@ -64,10 +88,16 @@
         if (code == 13) {
             var valor = $("#query").val();
             $.ajax({ url: "/Convocatoria/Buscar?query=" + valor })
-            .done(function (respuesta) {
-                $("#tbody").html(respuesta);
-            });
+                .done(function (respuesta) {
+                    $("#tbody").html(respuesta);
+                });
         }
     });
 
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#con").addClass("active");
+    });
 </script>

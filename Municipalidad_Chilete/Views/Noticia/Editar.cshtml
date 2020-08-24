@@ -1,49 +1,67 @@
 ﻿
 @{
-    ViewBag.Title = "Editar";
+    ViewBag.Title = "Crear";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<div id="page-wrapper">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-5"></div>
+            <div class="col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center"><h3>Editar noticia</h3></div>
+                    <div id="inputs" class="panel-body">
 
+                        <form action="/Noticia/Editar?id=@Model.Id_Noticia" method="post" enctype="multipart/form-data">
+                            <div>
+                                <label class="control-label">Titulo :</label>
+                                <input class="form-control" type="text" name="Titulo" value="@Model.Titulo" />
+                                @Html.ValidationMessage("Titulo")
+                            </div>
+                            <div>
+                                <label class="control-label">Descripcion :</label>
+                                <input class="form-control" type="text" name="Descripcion" value="@Model.Descripcion" />
+                                @Html.ValidationMessage("Descripcion")
+                            </div>
+                            <div>
+                                <label class="control-label">Imagen :</label>
+                                <input class="form-control" type="file" name="file" />
+                                <img src="@Model.Imagen" style="width:50px;height:50px" />
+                            </div>
 
-@{
-    ViewBag.Title = "Editar";
-}
+                            <br />
+                            <a class="pull-left btn btn-danger" href="/Noticia/Index"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</a>
+                            <button id="btnGuardar" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-saved"></span> Guardar</button>
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<div class="container">
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading text-center"><h3>Editar noticia</h3></div>
-                <div id="inputs" class="panel-body">
+                        </form>
+                    </div>
 
-                    <form action="/Noticia/Editar?id=@Model.Id_Noticia" method="post" enctype="multipart/form-data">
-                        <div>
-                            <label class="control-label">Descripcion :</label>
-                            <input class="form-control" type="text" name="Descripcion" value="@Model.Descripcion" />
-                            @Html.ValidationMessage("Descripcion")
-                        </div>
-                        <div>
-                            <label class="control-label">Imagen :</label>
-                            <input class="form-control" type="file" name="file" />
-                            <img src="@Model.Imagen" style="width:50px;height:50px" />
-                        </div>
-
-                        <br />
-                        <a class="pull-left btn btn-danger" href="/Noticia/Index"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</a>
-                        <button id="btnGuardar" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-saved"></span> Guardar</button>
-
-                    </form>
                 </div>
-
             </div>
+
         </div>
-
     </div>
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
 </div>
-
-

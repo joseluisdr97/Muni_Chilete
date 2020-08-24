@@ -1,58 +1,79 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Lista de requisitos del tipo de tramite @ViewBag.Tipo_Tramite.Nombre</h2>
-<br />
-<div class="container">
-    <a class="pull-left btn btn-danger" href="/Tipo_Tramite/Index?id_Tramite=@ViewBag.Tramite.Id_Tramite"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</a>
-</div>
-<br />
-<div class="container">
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <br />
+            <a class="pull-left btn btn-danger" href="/Tipo_Tramite/Index?id_Tramite=@ViewBag.Tramite.Id_Tramite"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</a>
+            <br />
+            <h2>Lista de requisitos del tipo de tramite @ViewBag.Tipo_Tramite.Nombre</h2>
 
-    <label class="control-label">Ingrese Descripción :</label>
-    <div class="row">
-        <form action="/Requisito/Buscar">
-            <div class="col-sm-4">
-                <input id="query" class="form-control" type="text" name="query" value="@ViewBag.datos" placeholder="Ingrese descripción" />
+            <br />
+
+            <label class="control-label">Ingrese Descripción :</label>
+            <div class="row">
+                <form action="/Requisito/Buscar">
+                    <div class="col-sm-4">
+                        <input id="query" class="form-control" type="text" name="query" value="@ViewBag.datos" placeholder="Ingrese descripción" />
+                    </div>
+                    <div class="col-sm-2">
+                        <button id="btnBuscar" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+                    </div>
+                </form>
+                <div class="col-sm-6">
+                    <a class="btn btn-primary pull-right" id="btnCrear" href="/Requisito/Crear?id_Tipo_Tramite=@ViewBag.Tipo_Tramite.Id_Tipo_Tramite"><span class="glyphicon glyphicon-plus"></span> Crear</a>
+                </div>
             </div>
-            <div class="col-sm-2">
-                <button id="btnBuscar" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar</button>
-            </div>
-        </form>
-        <div class="col-sm-6">
-            <a class="btn btn-primary pull-right" id="btnCrear" href="/Requisito/Crear?id_Tipo_Tramite=@ViewBag.Tipo_Tramite.Id_Tipo_Tramite"><span class="glyphicon glyphicon-plus"></span> Crear</a>
+            <br />
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Formato</th>
+                        <th>Opción</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id_Requisito</td>
+                            <td>@item.Descripcion</td>
+                            <td>@item.Precio</td>
+                            <td>@item.Formato</td>
+                            <td><a href="/Requisito/Editar?id=@item.Id_Requisito&&id_Tipo_Tramite=@ViewBag.Tipo_Tramite.Id_Tipo_Tramite" class="btn btn-info">Editar</a> | <a href="/Tipo_Tramite/Eliminar?id=@item.Id_Requisito&&id_Tipo_Tramite=@ViewBag.Tipo_Tramite.Id_Tipo_Tramite" class="btn btn-danger">Eliminar</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </div>
     </div>
-    <br />
-
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Formato</th>
-                <th>Opción</th>
-            </tr>
-        </thead>
-        <tbody id="tbody">
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Id_Requisito</td>
-                    <td>@item.Descripcion</td>
-                    <td>@item.Precio</td>
-                    <td>@item.Formato</td>
-                    <td><a href="/Requisito/Editar?id=@item.Id_Requisito&&id_Tipo_Tramite=@ViewBag.Tipo_Tramite.Id_Tipo_Tramite" class="btn btn-info">Editar</a> | <a href="/Tipo_Tramite/Eliminar?id=@item.Id_Requisito&&id_Tipo_Tramite=@ViewBag.Tipo_Tramite.Id_Tipo_Tramite" class="btn btn-danger">Eliminar</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <!-- /.row -->
 
 </div>
-
 <script>
 
     //BUSCAR CUANDO DAMOS CLICK

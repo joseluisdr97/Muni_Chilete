@@ -1,37 +1,56 @@
 ﻿
 @{
-    ViewBag.Title = "Editar";
+    ViewBag.Title = "Crear";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<h2>Editar</h2>
-<div class="container">
-    <div class="row">
-        <br />
-        <br />
-        <br />
-        <br />
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading text-center"><h3>Crear tipo</h3></div>
-                <div id="inputs" class="panel-body">
-                    <form action="/Tipo_Tramite/Editar?id=@Model.Id_Tipo_Tramite&&id_Tramite=@ViewBag.Tramite.Id_Tramite" method="post">
-                        <div>
-                            <label class="control-label">Nombre :</label>
-                            <input class="form-control" type="text" name="Nombre" value="@Model.Nombre" />
-                            @Html.ValidationMessage("Nombre")
-                        </div>
-                        <div>
-                            <label class="control-label">Descripcion :</label>
-                            <input class="form-control" type="text" name="Descripcion" value="@Model.Descripcion" />
-                            @Html.ValidationMessage("Descripcion")
-                        </div>
-                        <br />
-                        <a class="pull-left btn btn-danger" href="/Tipo_Tramite/Index?id_Tramite=@ViewBag.Tramite.Id_Tramite"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</a>
-                        <button id="btnGuardar" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-saved"></span> Guardar</button>
-                    </form>
+<div id="page-wrapper">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-5"></div>
+            <div class="col-sm-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center"><h3>Crear tipo</h3></div>
+                    <div id="inputs" class="panel-body">
+                        <form action="/Tipo_Tramite/Editar?id=@Model.Id_Tipo_Tramite&&id_Tramite=@ViewBag.Tramite.Id_Tramite" method="post">
+                            <div>
+                                <label class="control-label">Nombre :</label>
+                                <input class="form-control" type="text" name="Nombre" value="@Model.Nombre" />
+                                @Html.ValidationMessage("Nombre")
+                            </div>
+                            <div>
+                                <label class="control-label">Descripcion :</label>
+                                <input class="form-control" type="text" name="Descripcion" value="@Model.Descripcion" />
+                                @Html.ValidationMessage("Descripcion")
+                            </div>
+                            <br />
+                            <a class="pull-left btn btn-danger" href="/Tipo_Tramite/Index?id_Tramite=@ViewBag.Tramite.Id_Tramite"><span class="glyphicon glyphicon-circle-arrow-left"></span>Volver</a>
+                            <button id="btnGuardar" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-saved"></span> Guardar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
 </div>

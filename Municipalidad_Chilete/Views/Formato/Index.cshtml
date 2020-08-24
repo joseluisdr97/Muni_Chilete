@@ -1,50 +1,72 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Lista de formatos</h2>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <br />
+            <h2>Lista de formatos</h2>
 
-<br />
-<div class="container">
+            <br />
+            <label class="control-label">Ingrese Nombre :</label>
+            <div class="row">
+                <form action="/Formato/Buscar">
+                    <div class="col-sm-4">
+                        <input id="query" class="form-control" type="text" name="query" value="@ViewBag.datos" placeholder="Ingrese nombre" />
+                    </div>
+                    <div class="col-sm-2">
+                        <button id="btnBuscar" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+                    </div>
+                </form>
+                <div class="col-sm-6">
+                    <a class="btn btn-primary pull-right" id="btnCrear" href="/Formato/Crear"><span class="glyphicon glyphicon-plus"></span> Crear</a>
+                </div>
+            </div>
+            <br />
 
-    <label class="control-label">Ingrese Nombre :</label>
-    <div class="row">
-        <form action="/Formato/Buscar">
-            <div class="col-sm-4">
-                <input id="query" class="form-control" type="text" name="query" value="@ViewBag.datos" placeholder="Ingrese nombre" />
-            </div>
-            <div class="col-sm-2">
-                <button id="btnBuscar" class="btn btn-success"><span class="glyphicon glyphicon-search"></span> Buscar</button>
-            </div>
-        </form>
-        <div class="col-sm-6">
-            <a class="btn btn-primary pull-right" id="btnCrear" href="/Formato/Crear"><span class="glyphicon glyphicon-plus"></span> Crear</a>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Url</th>
+                        <th>Opción</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id_Formato</td>
+                            <td>@item.Nombre</td>
+                            <td><a href="@item.Url" target="_blank">@item.Url</a></td>
+                            <td><a href="/Formato/Editar?id=@item.Id_Formato" class="btn btn-info">Editar</a> | <a href="/Formato/Eliminar?id=@item.Id_Formato" class="btn btn-danger">Eliminar</a> </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
         </div>
     </div>
-    <br />
-
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Url</th>
-                <th>Opción</th>
-            </tr>
-        </thead>
-        <tbody id="tbody">
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Id_Formato</td>
-                    <td>@item.Nombre</td>
-                    <td><a href="@item.Url" target="_blank">@item.Url</a></td>
-                    <td><a href="/Formato/Editar?id=@item.Id_Formato" class="btn btn-info">Editar</a> | <a href="/Formato/Eliminar?id=@item.Id_Formato" class="btn btn-danger">Eliminar</a> </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <!-- /.row -->
 
 </div>
 
@@ -56,8 +78,8 @@
         var valor = $("#query").val();
         $.ajax({ url: "/Formato/Buscar?query=" + valor })
             .done(function (respuesta) {
-            $("#tbody").html(respuesta);
-        });
+                $("#tbody").html(respuesta);
+            });
     });
 
     //BUSCAR CUANDO DAMOS ENTER
@@ -66,9 +88,9 @@
         if (code == 13) {
             var valor = $("#query").val();
             $.ajax({ url: "/Formato/Buscar?query=" + valor })
-            .done(function (respuesta) {
-                $("#tbody").html(respuesta);
-            });
+                .done(function (respuesta) {
+                    $("#tbody").html(respuesta);
+                });
         }
     });
 

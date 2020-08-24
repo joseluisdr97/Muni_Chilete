@@ -1,16 +1,101 @@
-﻿
-@{
-    ViewBag.Title = "Tramite";
+﻿@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_LayoutInicio.cshtml";
 }
 <br />
 <br />
 <br />
 <br />
-@foreach(var item in Model)
-{
-<tr>
-    <td>
-        <a href="/Tramite/TipoTramite?id=@item.Id_Tramite" class="btn btn-danger">@item.Nombre</a>
-    </td>
-</tr>
-}
+
+
+<div class="container mt-5 px-5 pt-5 pb-3 z-depth-1">
+
+
+    <!--Section: Content-->
+    <section class="text-center dark-grey-text">
+        <!-- Section heading -->
+        <h2 class="font-weight-bold">Tramites</h2>
+        <hr class="w-header my-4">
+        <!-- Section description -->
+
+        <div class="row text-center d-flex justify-content-center">
+            @{ var a = 0; var regciv = "";}
+            @foreach (var item in Model)
+            {
+                a++;
+                if (a == 1)
+                {
+                    regciv = "https://media.istockphoto.com/vectors/request-for-help-linear-icon-concept-request-for-help-line-vector-vector-id961789668";
+                }
+                else if (a == 2)
+                {
+                    regciv = "https://www.muni-sanmiguel.gob.pe/images/iconos/boton-rcivil.png";
+                }
+                else if (a == 3)
+                {
+                    regciv = "https://ugelparuro.gob.pe/wp-content/uploads/2019/07/icono-400x500.png";
+                }
+                else if (a == 4)
+                {
+                    regciv = "https://sumamosdesign.com/cusco/wp-content/uploads/2019/04/ICONO-UNIDADES.png";
+                }
+                else
+                {
+                    regciv = "https://maquinaselectricasblog.files.wordpress.com/2016/11/mantenimiento.jpg?w=840";
+                }
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="view card-img-100 mx-auto mb-4">
+                        <img src="@regciv" style="width:200px;height:200px" class="img-fluid" alt="smaple image">
+                    </div>
+                    <h5 class="font-weight-normal mb-4"><a href="/Tramite/TipoTramite?id=@item.Id_Tramite" class="btn btn-danger">@item.Nombre</a></h5>
+                    <p class="text-muted px-2 mb-md-0">
+                        @item.Descripcion
+                    </p>
+                    @*@a*@
+                </div>
+            }
+        </div>
+
+    </section>
+    <!--Section: Content-->
+
+
+</div>
+
+
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-info">
+                    <h4>HORARIOS DE ATENCIÓN</h4>
+                    <p>LUNES A VIERNES</p>
+                    <p>8:00 AM - 1:00 PM</p>
+                    <p>3:00 PM - 6:00 PM</p>
+                </div>
+
+
+
+                <div class="col-lg-4 col-md-6 footer-contact">
+                    <h4>CONTACTANOS</h4>
+                    <p>
+                        Jr. Ignacio Prado N° 128<br>
+
+                        <strong>TELEFONO:</strong> 076 554113<br>
+
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-newsletter">
+                    <div class="social-links">
+                        <h4>REDES SOCIALES</h4>
+                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</footer>
